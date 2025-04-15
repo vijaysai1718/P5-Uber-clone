@@ -1,9 +1,10 @@
 
-FROM node:14
+FROM node:16
 
 # Set the working directory
 WORKDIR /app
 
+RUN npm install -g expo-cli
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
@@ -16,8 +17,8 @@ COPY . .
 # Build the React app
 RUN npm  build
 
-# Expose port 3000 (or the port your app is configured to listen on)
-EXPOSE 3000
+# Expose port 19000 (or the port your app is configured to listen on)
+EXPOSE 19000
 
 # Start your Node.js server (assuming it serves the React app)  
-CMD ["npm", "start"]
+CMD ["expo", "start", "--tunnel"]
